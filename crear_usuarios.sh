@@ -95,11 +95,10 @@ while IFS=':' read -r nombre comentario home crear_home shell; do
         # Mostrar info si corresponde
         if $mostrar_info ; then
             echo "Usuario $nombre creado con éxito con datos indicados:"
-            [[ -n "$comentario" ]] && echo "Comentario: $comentario" || echo "Comentario: "
-            echo "Dir home: $home"
-            echo "Asegurado existencia directorio home: $crear_home"
-            echo "Shell por defecto: $shell"
-            echo
+            [[ -n "$comentario" ]] && echo -e "\tComentario: $comentario" || echo -e "\tComentario: "
+            echo -e "\tDir home: $home"
+            echo -e "\tAsegurado existencia directorio home: $crear_home"
+            echo -e "\tShell por defecto: $shell"
         fi
     else
         if $mostrar_info ; then
