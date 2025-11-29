@@ -177,7 +177,9 @@ def crear_ec2(DB_ENDPOINT):
         EC2_INSTANCE_ID = EC2_INSTANCE.instance_id
         break
 
-    with open("user_data.sh", "r") as f:
+    ruta_user_data = os.path.join(os.path.dirname(__file__), "user_data.sh")
+
+    with open(ruta_user_data, "r") as f:
         user_data_template = f.read()
 
     user_data = (

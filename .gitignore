@@ -5,3 +5,4 @@ docker-compose.yml
 Python/.env
 *.env
 Python/*.pem
+venv/
