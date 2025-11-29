@@ -177,7 +177,7 @@ def crear_ec2(DB_ENDPOINT):
         EC2_INSTANCE_ID = EC2_INSTANCE.instance_id
         break
 
-    with open("user_data_socios.sh", "r") as f:
+    with open("user_data.sh", "r") as f:
         user_data_template = f.read()
 
     user_data = (
