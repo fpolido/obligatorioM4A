@@ -183,22 +183,15 @@ def crear_ec2(DB_ENDPOINT):
         user_data_template = f.read()
 
     user_data = (
-        user_data_template
-            .replace("__EC2_APP_USER__", EC2_APP_USER)
-            .replace("__EC2_APP_GROUP__", EC2_APP_GROUP)
+         user_data_template
             .replace("__APP_REPO_URL__", APP_REPO_URL)
-            .replace("__APP_DIR__", APP_DIR)
-            .replace("__APP_PORT__", APP_PORT)
-            .replace("__DB_HOST__", DB_HOST) 
-            .replace("__DB_PORT__", DB_PORT) 
-            .replace("__DB_APP_USER__", DB_APP_USER) 
-            .replace("__DB_APP_PASSWORD__", DB_APP_PASSWORD) 
-            .replace("__DB_MASTER_USER__", DB_MASTER_USER_NAME)
-            .replace("__DB_MASTER_PASSWORD__", DB_MASTER_PASSWORD)
-            .replace("__APP_ADMIN_PASSWORD__", APP_ADMIN_PASSWORD)
-            .replace("__APP_ADMIN_USER__", APP_ADMIN_USER)
-            .replace("__DB_APP_NAME__", DB_NAME)
-        )
+            .replace("__DB_HOST__", DB_HOST)
+            .replace("__DB_NAME__", DB_NAME)
+            .replace("__DB_USER__", DB_APP_USER)
+            .replace("__DB_PASS__", DB_APP_PASSWORD)
+            .replace("__APP_USER_WEB__", APP_ADMIN_USER)
+            .replace("__APP_PASS_WEB__", APP_ADMIN_PASSWORD)
+    )
 
     #print(user_data)
 

@@ -38,14 +38,25 @@ fi
 # ================================
 # 3) Clonar la aplicación
 # ================================
+rm -rf /tmp/apprepo
+git clone "$APP_REPO_URL" /tmp/apprepo
+
 rm -rf /var/www/html/*
-git clone "$APP_REPO_URL" /var/www/html
+
+cp /tmp/apprepo/*.php /var/www/html/
+cp /tmp/apprepo/*.html /var/www/html/
+cp /tmp/apprepo/*.css /var/www/html/
+cp /tmp/apprepo/*.js /var/www/html/
 
 # ================================
-# 4) Mover init_db.sql fuera del webroot
+# 4) Mover init_db.sql y README.md fuera del webroot
 # ================================
-if [ -f /var/www/html/init_db.sql ]; then
-  mv /var/www/html/init_db.sql /var/www/init_db.sql
+if [ -f /tmp/apprepo/init_db.sql ]; then
+  mv /tmp/apprepo/init_db.sql /var/www/init_db.sql
+fi
+
+if [ -f /tmp/apprepo/README.md ]; then
+  mv /tmp/apprepo/README.md /var/www/README.md
 fi
 
 # ================================
