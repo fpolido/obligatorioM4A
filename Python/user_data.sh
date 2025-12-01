@@ -18,14 +18,13 @@ APP_DIR="/var/www"
 # ================================
 # 1) Actualizar sistema e instalar Apache + PHP
 # ================================
-dnf clean all
-dnf makecache
-dnf -y update
-dnf -y install httpd php8.4 php8.4-cli php8.4-fpm php8.4-common php8.4-mysqlnd php8.4-pdo php8.4-xml php8.4-process git mariadb105 mariadb105-server mariadb105-server-utils
+sudo dnf clean all
+sudo dnf makecache
+sudo dnf -y update
+sudo dnf -y install httpd php php-cli php-fpm php-common php-mysqlnd mariadb105 git
 
-systemctl enable --now httpd
-systemctl enable --now php-fpm
-systemctl enable --now mariadb
+sudo systemctl enable --now httpd
+sudo systemctl enable --now php-fpm
 
 # ================================
 # 2) Configurar Apache para PHP-FPM
@@ -63,17 +62,6 @@ fi
 # ================================
 # 5) Crear base de datos y usuario de app
 # ================================
-echo "Esperando que RDS esté accesible..."
-
-for i in {1..30}; do
-  if mysql -h "${DB_HOST}" -u "${DB_MASTER_USER}" -p"${DB_MASTER_PASSWORD}" -e "SELECT 1" >/dev/null 2>&1; then
-    echo "RDS disponible!"
-    break
-  fi
-  echo "Intento $i/30: RDS no responde todavía, esperando 10s..."
-  sleep 10
-done
-
 mysql -h "${DB_HOST}" -u "${DB_MASTER_USER}" -p"${DB_MASTER_PASSWORD}" <<EOSQL
 CREATE DATABASE IF NOT EXISTS ${DB_NAME};
 CREATE USER IF NOT EXISTS '${DB_APP_USER}'@'%' IDENTIFIED BY '${DB_APP_PASSWORD}';
@@ -110,4 +98,4 @@ chown -R apache:apache ${APP_DIR}
 # ================================
 # 9) Reiniciar servicios
 # ================================
-systemctl restart httpd php-fpm mariadb
+sudo systemctl restart httpd php-fpm
