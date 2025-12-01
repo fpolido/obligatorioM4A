@@ -46,7 +46,10 @@ git clone "$APP_REPO_URL" /tmp/apprepo
 mkdir -p ${APP_DIR}/html
 rm -rf ${APP_DIR}/html/*
 
-rsync -av --exclude 'init_db.sql' --exclude 'README.md' /tmp/apprepo/ ${APP_DIR}/html/
+cp /tmp/apprepo/*.php /var/www/html/
+cp /tmp/apprepo/*.html /var/www/html/
+cp /tmp/apprepo/*.css /var/www/html/
+cp /tmp/apprepo/*.js /var/www/html/
 
 # ================================
 # 4) Mover init_db.sql y README.md fuera del webroot

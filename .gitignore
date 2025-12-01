@@ -1,8 +1,6 @@
 deploy_app.py
 Dockerfile
 docker-compose.yml
-.env
 Python/.env
-*.env
-.pem
+*.pem
 venv/
