@@ -31,6 +31,13 @@ Este comando:
 - Muestra información detallada (-i).
 - Informa errores si existen líneas mal formadas o si un usuario no se puede crear.
 
+## Verificación de resultados
+Ejecutar:
+```bash
+cat /etc/passwd
+```
+Deberían aparecer los usuarios creados
+
 # 2. Script Python – Automatización de Infraestructura AWS
 
 ## Descripción
@@ -80,11 +87,21 @@ aws_session_token=zzzzz
 
 ## Modo de uso
 Para ejecutar el script:
+```bash
 python3 crear_infra.py
-
+```
 Este comando:
 - Genera toda la infraestructura AWS automáticamente.
 - Crea una EC2 con Apache y PHP.
 - Construye el archivo `.env` dentro del servidor.
 - Conecta la aplicación con la base de datos RDS.
 - Muestra la IP pública de la instancia para ingresar a la web.
+
+## Verificación de resultados
+Abrir un navegador web y entrar a:
+```bash
+http://IP_PUBLICA/login.php
+```
+Debería mostrarse la pantalla de login de la aplicación donde poner las siguientes credenciales
+- Usuario `admin`
+- Contraseña: `admin123`
